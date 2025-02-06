@@ -1,24 +1,49 @@
+---
+const { frontmatter } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
-  </head>
-  <body>
-    <slot />
-  </body>
-</html>
+  <html lang="en">
+    <head>
+      <!-- Basic Meta Tags -->
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width" />
+      <title>{frontmatter.title}</title>
+      <meta name="description" content={frontmatter.description} />
 
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
-      Arial, sans-serif !important;
-  }
-</style>
+      <!-- Open Graph / Facebook -->
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content={Astro.url} />
+      <meta property="og:title" content={frontmatter.title} />
+      <meta property="og:description" content={frontmatter.description} />
+      <meta property="og:image" content={frontmatter.image} />
+      <meta property="og:site_name" content={frontmatter.content} />
+
+      <!-- Twitter -->
+      <!-- <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:url" content={Astro.url} />
+      <meta name="twitter:title" content={frontmatter.title} />
+      <meta name="twitter:description" content={frontmatter.description} />
+      <meta name="twitter:image" content={frontmatter.image} /> -->
+
+      <!-- Optional: If you have a Twitter handle -->
+      <!-- <meta name="twitter:creator" content="@yourusername" />
+      <meta name="twitter:site" content="@yourusername" /> -->
+    </head>
+    <body>
+      <slot />
+    </body>
+  </html>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      font-family: Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans",
+        Arial, sans-serif !important;
+    }
+  </style>
+</html>
