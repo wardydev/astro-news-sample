@@ -1,0 +1,57 @@
+---
+import CardPost from "../components/CardPost.astro";
+import Layout from "../layouts/Layout.astro";
+import { getPosts } from "../lib/apis";
+import type { Post } from "../lib/types";
+
+let posts: Post[] = [];
+let error: string | null = null;
+
+try {
+  posts = await getPosts();
+} catch (e) {
+  error = e instanceof Error ? e.message : "Failed to fetch posts";
+}
+---
+
+<Layout>
+  <main id="container">
+    <div class="posts-container">
+      {
+        error ? (
+          <div class="error-message">{error}</div>
+        ) : (
+          posts.map((post) => <CardPost post={post} />)
+        )
+      }
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .posts-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .error-message {
+    background-color: #fee2e2;
+    border: 1px solid #ef4444;
+    color: #dc2626;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 2rem auto;
+    max-width: 600px;
+  }
+
+  @media (max-width: 768px) {
+    .posts-container {
+      gap: 1rem;
+    }
+  }
+</style>
