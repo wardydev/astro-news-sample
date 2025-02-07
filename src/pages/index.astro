@@ -12,9 +12,17 @@ try {
 } catch (e) {
   error = e instanceof Error ? e.message : "Failed to fetch posts";
 }
+
+const frontmatter = {
+  title: "Ceritanya ini landing page",
+  description: "Ceritanya ini adalah description dari landing pagenya",
+  image:
+    "https://img.antaranews.com/cache/1200x800/2022/08/03/IMG-20220803-WA0017_4.jpg.webp",
+  content: "Content landing page",
+};
 ---
 
-<Layout>
+<Layout frontmatter={frontmatter}>
   <main id="container">
     <div class="posts-container">
       {

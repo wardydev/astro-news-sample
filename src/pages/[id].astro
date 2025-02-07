@@ -12,9 +12,17 @@ try {
 } catch (e) {
   error = e instanceof Error ? e.message : "Failed to fetch posts";
 }
+
+const frontmatter = {
+  title: post?.title,
+  description: post?.body,
+  image:
+    "https://img.antaranews.com/cache/1200x800/2022/08/03/IMG-20220803-WA0017_4.jpg.webp",
+  content: post?.body,
+};
 ---
 
-<Layout>
+<Layout frontmatter={frontmatter}>
   <main class="post-detail">
     {
       error ? (
