@@ -17,7 +17,7 @@ const { frontmatter } = Astro.props;
       <meta property="og:url" content={Astro.url} />
       <meta property="og:title" content={frontmatter.title} />
       <meta property="og:description" content={frontmatter.description} />
-      <meta property="og:image" content={frontmatter.image} />
+      <meta property="og:image" itemprop="image" content={frontmatter.image} />
       <meta property="og:site_name" content={frontmatter.content} />
 
       <!-- Twitter -->
